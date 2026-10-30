@@ -1,0 +1,118 @@
+/* Estilos de la app, iguales al prototipo (verde Viveros). */
+.root {
+    -fx-font-family: "Segoe UI", "Arial", sans-serif;
+    -fx-font-size: 13px;
+    -fx-background-color: #F6F8F7;
+}
+.titulo {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1B1F1C;
+}
+.subtitulo {
+    -fx-text-fill: #56605A;
+}
+.tarjeta {
+    -fx-background-color: white;
+    -fx-border-color: #D2D9D4;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-padding: 16;
+}
+.numero {
+    -fx-background-color: #1E6B3A;
+    -fx-background-radius: 12;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-min-width: 24;
+    -fx-min-height: 24;
+    -fx-alignment: center;
+}
+.titulo-seccion {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1E6B3A;
+}
+.etiqueta {
+    -fx-font-weight: bold;
+    -fx-text-fill: #1B1F1C;
+}
+.ayuda {
+    -fx-font-size: 12px;
+    -fx-text-fill: #56605A;
+}
+.vacio {
+    -fx-border-color: #AEB8B1;
+    -fx-border-style: segments(6, 4);
+    -fx-border-radius: 6;
+    -fx-background-color: #FAFBFA;
+    -fx-padding: 14;
+    -fx-text-fill: #56605A;
+    -fx-alignment: center;
+}
+.solo-lectura {
+    -fx-background-color: #F0F2F1;
+    -fx-text-fill: #3A423E;
+}
+.total {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1B1F1C;
+}
+.msg-error {
+    -fx-text-fill: #B42318;
+    -fx-font-size: 12px;
+}
+.campo-error {
+    -fx-border-color: #B42318;
+    -fx-border-width: 2;
+    -fx-border-radius: 4;
+}
+.banner-error {
+    -fx-background-color: #FEF3F2;
+    -fx-border-color: #F1B5AE;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-text-fill: #8A1C12;
+    -fx-font-weight: bold;
+    -fx-padding: 10 14;
+}
+.estado-aprobado {
+    -fx-background-color: #E6F2EA;
+    -fx-text-fill: #1E6B3A;
+    -fx-background-radius: 10;
+    -fx-padding: 3 10;
+    -fx-font-weight: bold;
+}
+.estado-revision {
+    -fx-background-color: #FFF1E0;
+    -fx-text-fill: #8A4B00;
+    -fx-background-radius: 10;
+    -fx-padding: 3 10;
+    -fx-font-weight: bold;
+}
+.estado-sin {
+    -fx-background-color: #EEF0EF;
+    -fx-text-fill: #56605A;
+    -fx-background-radius: 10;
+    -fx-padding: 3 10;
+    -fx-font-weight: bold;
+}
+.boton-principal {
+    -fx-background-color: #1E6B3A;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 20;
+    -fx-cursor: hand;
+}
+.boton-principal:hover {
+    -fx-background-color: #14502A;
+}
+.boton {
+    -fx-padding: 8 16;
+    -fx-cursor: hand;
+}
+.boton-quitar {
+    -fx-text-fill: #B42318;
+    -fx-cursor: hand;
+}

@@ -53,6 +53,18 @@ src/main/java/co/edu/uniquindio/viveros/
 └── util/Fechas.java           Cálculo de días hábiles (Regla 002)
 ```
 
+## Cómo probar la pantalla Agregar pedido
+
+1. Escoger el encargado y buscar un cliente (por ejemplo `cabrera`).
+2. Llenar el nombre del equipo, el tipo de prenda y el valor unitario.
+3. Agregar los uniformes con disciplina, nombre, número y talla.
+4. Marcar «El cliente aceptó la cotización».
+5. Cargar el diseño (una imagen JPG o PNG) y marcarlo como aprobado.
+6. Escribir el abono (mínimo el 50%) y el método de pago.
+7. Dar **Confirmar pedido**: sale el comprobante y desde ahí se puede enviar a producción.
+
+Para ver un error bloqueante: escribir un abono menor al 50% y dar Confirmar.
+
 ## Reglas de negocio y dónde se validan
 
 | Regla | Dónde |

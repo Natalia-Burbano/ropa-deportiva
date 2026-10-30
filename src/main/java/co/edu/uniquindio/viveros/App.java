@@ -19,8 +19,11 @@ public class App extends Application {
         TabPane pestanas = new TabPane(pedido, clientes);
         pestanas.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
 
+        Scene escena = new Scene(pestanas, 1150, 800);
+        escena.getStylesheets().add(App.class.getResource("/estilos.css").toExternalForm());
+
         stage.setTitle("Viveros Ropa Deportiva");
-        stage.setScene(new Scene(pestanas, 1000, 700));
+        stage.setScene(escena);
         stage.show();
     }
 
