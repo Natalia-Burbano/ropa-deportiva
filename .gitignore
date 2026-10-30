@@ -1,0 +1,12 @@
+# IntelliJ
+.idea/
+*.iml
+out/
+
+# Maven
+target/
+
+# Datos que se generan al correr la app (cada una tiene los suyos)
+data/
+
+.DS_Store
