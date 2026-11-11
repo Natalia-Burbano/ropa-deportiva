@@ -153,7 +153,8 @@ public class CargarDisenoDialogo extends Dialog<Diseno> {
     private Diseno construirDiseno() {
         boolean aprobado = chkAprobado.isSelected();
         Diseno d = new Diseno();
-        d.setOrigen(archivo.getAbsolutePath());
+        // Se guarda una copia en data/disenos para que el pedido no dependa del archivo original
+        d.setOrigen(ImagenDiseno.guardarCopia(archivo).getAbsolutePath());
         d.setMedioRecepcion(cbMedio.getValue());
         d.setIdDisenador(cbDisenador.getValue().getIdDisenador());
         d.setEstado(aprobado ? Diseno.APROBADO : Diseno.EN_REVISION);

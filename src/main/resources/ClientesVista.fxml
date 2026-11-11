@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<!-- Pantalla 2: CRUD de Cliente. Responsable: Integrante 1.
+     Se abre en Scene Builder (clic derecho sobre el archivo > Open in SceneBuilder).
+     Los fx:id de los campos se llaman igual que los atributos de Cliente. -->
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="co.edu.uniquindio.viveros.vista.ClientesVistaController">
+    <padding>
+        <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+    </padding>
+
+    <!-- Encabezado -->
+    <top>
+        <VBox spacing="4.0">
+            <Label text="Clientes" styleClass="titulo"/>
+            <Label text="Registre, busque, edite o elimine los capitanes y delegados de equipo." styleClass="subtitulo"/>
+            <BorderPane.margin>
+                <Insets bottom="16.0"/>
+            </BorderPane.margin>
+        </VBox>
+    </top>
+
+    <!-- Listado con buscador y paginación -->
+    <center>
+        <VBox spacing="10.0" styleClass="tarjeta">
+            <Label text="Listado de clientes" styleClass="titulo-seccion"/>
+            <HBox spacing="8.0" alignment="CENTER_LEFT">
+                <TextField fx:id="txtBuscar" promptText="Buscar por nombre o teléfono" HBox.hgrow="ALWAYS" styleClass="buscador"/>
+                <Button text="Limpiar" styleClass="boton" onAction="#limpiarBusqueda"/>
+            </HBox>
+
+            <TableView fx:id="tblClientes" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="colIdCliente" text="ID" prefWidth="50.0"/>
+                    <TableColumn fx:id="colNombre" text="Nombre" prefWidth="200.0"/>
+                    <TableColumn fx:id="colTelefono" text="Teléfono" prefWidth="110.0"/>
+                    <TableColumn fx:id="colCanalContacto" text="Canal de contacto" prefWidth="130.0"/>
+                    <TableColumn fx:id="colEncargado" text="Registrado por" prefWidth="140.0"/>
+                    <TableColumn fx:id="colPedidos" text="Pedidos" prefWidth="70.0"/>
+                </columns>
+                <placeholder>
+                    <Label fx:id="lblVacio" text="No hay clientes registrados." styleClass="vacio"/>
+                </placeholder>
+            </TableView>
+
+            <HBox spacing="8.0" alignment="CENTER_LEFT">
+                <Button fx:id="btnAnterior" text="◀ Anterior" styleClass="boton" onAction="#paginaAnterior"/>
+                <Label fx:id="lblPagina" text="Página 1 de 1" styleClass="ayuda"/>
+                <Button fx:id="btnSiguiente" text="Siguiente ▶" styleClass="boton" onAction="#paginaSiguiente"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Button fx:id="btnEditar" text="Editar" styleClass="boton" onAction="#editarSeleccionado"/>
+                <Button fx:id="btnEliminar" text="Eliminar" styleClass="boton,boton-quitar" onAction="#eliminarSeleccionado"/>
+            </HBox>
+            <Label fx:id="lblMensajeLista" styleClass="banner-error" maxWidth="Infinity" wrapText="true"
+                   visible="false" managed="false"/>
+        </VBox>
+    </center>
+
+    <!-- Formulario crear / editar -->
+    <right>
+        <VBox spacing="6.0" prefWidth="340.0" styleClass="tarjeta">
+            <BorderPane.margin>
+                <Insets left="16.0"/>
+            </BorderPane.margin>
+            <Label fx:id="lblTituloFormulario" text="Nuevo cliente" styleClass="titulo-seccion"/>
+            <Label text="Los campos marcados con * son obligatorios." styleClass="ayuda"/>
+
+            <Label text="Nombre *" styleClass="etiqueta">
+                <VBox.margin><Insets top="8.0"/></VBox.margin>
+            </Label>
+            <TextField fx:id="txtNombre" promptText="Ej: Jhon Jairo Cabrera"/>
+            <Label fx:id="msgNombre" styleClass="msg-error" wrapText="true" visible="false" managed="false"/>
+
+            <Label text="Teléfono *" styleClass="etiqueta">
+                <VBox.margin><Insets top="6.0"/></VBox.margin>
+            </Label>
+            <TextField fx:id="txtTelefono" promptText="10 dígitos, ej: 3112345678"/>
+            <Label fx:id="msgTelefono" styleClass="msg-error" wrapText="true" visible="false" managed="false"/>
+
+            <Label text="Canal de contacto *" styleClass="etiqueta">
+                <VBox.margin><Insets top="6.0"/></VBox.margin>
+            </Label>
+            <ComboBox fx:id="cmbCanalContacto" promptText="Escoja una opción" maxWidth="Infinity"/>
+            <Label fx:id="msgCanalContacto" styleClass="msg-error" wrapText="true" visible="false" managed="false"/>
+
+            <Label text="Registrado por *" styleClass="etiqueta">
+                <VBox.margin><Insets top="6.0"/></VBox.margin>
+            </Label>
+            <ComboBox fx:id="cmbEncargado" promptText="Escoja el encargado" maxWidth="Infinity"/>
+            <Label fx:id="msgEncargado" styleClass="msg-error" wrapText="true" visible="false" managed="false"/>
+
+            <Label fx:id="lblBanner" styleClass="banner-error" maxWidth="Infinity" wrapText="true"
+                   visible="false" managed="false"/>
+            <Label fx:id="lblExito" styleClass="estado-aprobado" wrapText="true" visible="false" managed="false"/>
+
+            <HBox spacing="8.0">
+                <VBox.margin><Insets top="12.0"/></VBox.margin>
+                <Button fx:id="btnGuardar" text="Guardar cliente" styleClass="boton-principal" onAction="#guardar"/>
+                <Button text="Cancelar" styleClass="boton" onAction="#nuevo"/>
+            </HBox>
+        </VBox>
+    </right>
+</BorderPane>

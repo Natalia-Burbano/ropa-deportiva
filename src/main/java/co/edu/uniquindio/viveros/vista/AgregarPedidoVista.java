@@ -435,6 +435,7 @@ public class AgregarPedidoVista {
         if (diseno == null) {
             mostrar(lblDisenoVacio);
             ocultar(lblDisenoArchivo);
+            lblDisenoArchivo.setGraphic(null);
             lblDisenoEstado.setText("Sin diseño");
             lblDisenoEstado.getStyleClass().add("estado-sin");
             return;
@@ -443,6 +444,8 @@ public class AgregarPedidoVista {
         Disenador disenador = controlador.buscarDisenadorPorId(diseno.getIdDisenador());
         lblDisenoArchivo.setText(new File(diseno.getOrigen()).getName() + "\nDiseñador: "
                 + (disenador == null ? "" : disenador.getNombre()) + " · " + diseno.getMedioRecepcion());
+        lblDisenoArchivo.setGraphic(ImagenDiseno.crear(diseno, txtNombreGrupo.getText(), 72, 72));
+        lblDisenoArchivo.setGraphicTextGap(12);
         mostrar(lblDisenoArchivo);
         boolean aprobado = Diseno.APROBADO.equals(diseno.getEstado());
         lblDisenoEstado.setText(aprobado ? "Aprobado" : "En revisión");

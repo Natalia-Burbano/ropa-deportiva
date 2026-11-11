@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<!-- Pantalla 3: lista de pedidos registrados con su encargado, fecha de entrega, estado y diseño.
+     Se abre en Scene Builder (clic derecho sobre el archivo > Open in SceneBuilder). -->
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="co.edu.uniquindio.viveros.vista.PedidosVistaController">
+    <fx:define>
+        <ToggleGroup fx:id="grupoEstado"/>
+    </fx:define>
+    <padding>
+        <Insets top="20.0" right="20.0" bottom="20.0" left="20.0"/>
+    </padding>
+
+    <!-- Encabezado, buscador y filtros por estado -->
+    <top>
+        <VBox spacing="14.0">
+            <BorderPane.margin>
+                <Insets bottom="16.0"/>
+            </BorderPane.margin>
+            <HBox spacing="12.0" alignment="CENTER_LEFT">
+                <VBox spacing="2.0">
+                    <Label text="Pedidos registrados" styleClass="titulo"/>
+                    <Label text="Seguimiento de los pedidos: encargado, fecha de entrega, estado y diseño aprobado."
+                           styleClass="subtitulo"/>
+                </VBox>
+                <Region HBox.hgrow="ALWAYS"/>
+                <TextField fx:id="txtBuscar" promptText="Buscar equipo, cliente o N.º de pedido" prefWidth="300.0"
+                           styleClass="buscador"/>
+                <Button text="Actualizar" styleClass="boton" onAction="#refrescar"/>
+            </HBox>
+            <HBox spacing="8.0" alignment="CENTER_LEFT">
+                <ToggleButton fx:id="tglTodos" text="Todos" toggleGroup="$grupoEstado" selected="true"
+                              userData="TODOS" styleClass="filtro"/>
+                <ToggleButton fx:id="tglSinConfirmar" text="Sin confirmar" toggleGroup="$grupoEstado"
+                              userData="SIN_CONFIRMAR" styleClass="filtro"/>
+                <ToggleButton fx:id="tglConfirmado" text="Confirmados" toggleGroup="$grupoEstado"
+                              userData="CONFIRMADO" styleClass="filtro"/>
+                <ToggleButton fx:id="tglEnProduccion" text="En producción" toggleGroup="$grupoEstado"
+                              userData="EN_PRODUCCION" styleClass="filtro"/>
+                <ToggleButton fx:id="tglEntregado" text="Entregados" toggleGroup="$grupoEstado"
+                              userData="ENTREGADO" styleClass="filtro"/>
+                <Region HBox.hgrow="ALWAYS"/>
+                <Label fx:id="lblResumen" styleClass="ayuda"/>
+            </HBox>
+        </VBox>
+    </top>
+
+    <!-- Lista de pedidos (cada fila es una tarjeta con la miniatura del diseño) -->
+    <center>
+        <ListView fx:id="lstPedidos" styleClass="lista-pedidos">
+            <placeholder>
+                <Label fx:id="lblVacio" text="Todavía no hay pedidos registrados." styleClass="vacio"/>
+            </placeholder>
+        </ListView>
+    </center>
+
+    <!-- Detalle del pedido seleccionado -->
+    <right>
+        <ScrollPane fitToWidth="true" prefWidth="380.0" minWidth="340.0" styleClass="panel-detalle-scroll">
+            <BorderPane.margin>
+                <Insets left="16.0"/>
+            </BorderPane.margin>
+            <VBox spacing="12.0" styleClass="tarjeta">
+                <Label fx:id="lblSinSeleccion" text="Seleccione un pedido de la lista para ver su detalle y el diseño."
+                       styleClass="vacio" wrapText="true" maxWidth="Infinity"/>
+
+                <VBox fx:id="panelDetalle" spacing="12.0" visible="false" managed="false">
+                    <StackPane fx:id="cajaDiseno" styleClass="caja-diseno-grande" onMouseClicked="#ampliarDiseno"/>
+                    <Label fx:id="lblInfoDiseno" styleClass="ayuda" wrapText="true"/>
+
+                    <HBox spacing="8.0" alignment="CENTER_LEFT">
+                        <Label fx:id="lblDetalleNumero" styleClass="numero-pedido"/>
+                        <Region HBox.hgrow="ALWAYS"/>
+                        <Label fx:id="lblDetalleEstado" styleClass="estado"/>
+                    </HBox>
+                    <Label fx:id="lblDetalleEquipo" styleClass="titulo-detalle" wrapText="true"/>
+
+                    <GridPane hgap="12.0" vgap="8.0" styleClass="detalle-datos">
+                        <Label text="Cliente" styleClass="dato-nombre" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                        <Label fx:id="lblDetalleCliente" styleClass="dato-valor" wrapText="true" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+                        <Label text="Encargado" styleClass="dato-nombre" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                        <Label fx:id="lblDetalleEncargado" styleClass="dato-valor" wrapText="true" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+                        <Label text="Solicitado" styleClass="dato-nombre" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                        <Label fx:id="lblDetalleSolicitud" styleClass="dato-valor" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+                        <Label text="Entrega" styleClass="dato-nombre" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                        <Label fx:id="lblDetalleEntrega" styleClass="dato-valor" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+                        <Label text="Prenda" styleClass="dato-nombre" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                        <Label fx:id="lblDetallePrenda" styleClass="dato-valor" wrapText="true" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+                        <Label text="Uniformes" styleClass="dato-nombre" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                        <Label fx:id="lblDetalleUniformes" styleClass="dato-valor" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+                    </GridPane>
+
+                    <!-- Pagos -->
+                    <VBox spacing="6.0" styleClass="caja-pagos">
+                        <HBox>
+                            <Label text="Valor total" styleClass="dato-nombre"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label fx:id="lblDetalleTotal" styleClass="dato-valor-fuerte"/>
+                        </HBox>
+                        <HBox>
+                            <Label text="Abonado" styleClass="dato-nombre"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label fx:id="lblDetalleAbonado" styleClass="dato-valor"/>
+                        </HBox>
+                        <HBox>
+                            <Label text="Saldo pendiente" styleClass="dato-nombre"/>
+                            <Region HBox.hgrow="ALWAYS"/>
+                            <Label fx:id="lblDetalleSaldo" styleClass="dato-valor"/>
+                        </HBox>
+                    </VBox>
+                </VBox>
+            </VBox>
+        </ScrollPane>
+    </right>
+</BorderPane>
