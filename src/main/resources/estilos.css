@@ -1,118 +1,563 @@
-/* Estilos de la app, iguales al prototipo (verde Viveros). */
+/* =====================================================================
+   Estilos de Viveros Ropa Deportiva (verde Viveros).
+   Los colores se definen una sola vez aquí arriba y se reutilizan.
+   ===================================================================== */
 .root {
+    -verde: #1E6B3A;
+    -verde-oscuro: #14502A;
+    -verde-medio: #2E8B57;
+    -verde-claro: #E8F3EC;
+    -verde-suave: #F2F8F4;
+    -texto: #1B1F1C;
+    -texto-suave: #5B665F;
+    -borde: #D9E2DC;
+    -fondo: #F3F7F4;
+    -rojo: #B42318;
+
     -fx-font-family: "Segoe UI", "Arial", sans-serif;
     -fx-font-size: 13px;
-    -fx-background-color: #F6F8F7;
+    -fx-background-color: -fondo;
+    -fx-accent: -verde;
+    -fx-focus-color: -verde-medio;
+    -fx-faint-focus-color: #2E8B5722;
+    -fx-selection-bar: #D4EADB;
+    -fx-selection-bar-non-focused: #E3F0E7;
 }
+
+/* ---------- Barra superior de la marca ---------- */
+.barra-marca {
+    -fx-background-color: linear-gradient(to right, #12462A 0%, #1E6B3A 55%, #2E8B57 100%);
+    -fx-padding: 12 24 12 24;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.18), 8, 0, 0, 2);
+}
+.marca-logo {
+    -fx-background-color: white;
+    -fx-background-radius: 20;
+    -fx-text-fill: -verde;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-min-width: 40;
+    -fx-min-height: 40;
+    -fx-alignment: center;
+}
+.marca-titulo {
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+.marca-sub {
+    -fx-text-fill: #CDE7D6;
+    -fx-font-size: 12px;
+}
+.marca-fecha {
+    -fx-text-fill: #E4F2E8;
+    -fx-background-color: rgba(255, 255, 255, 0.12);
+    -fx-background-radius: 14;
+    -fx-padding: 5 12;
+}
+
+/* ---------- Pestañas ---------- */
+.tab-pane > .tab-header-area {
+    -fx-padding: 6 16 0 16;
+}
+.tab-pane > .tab-header-area > .tab-header-background {
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(20, 80, 42, 0.08), 6, 0, 0, 2);
+}
+.tab-pane > .tab-header-area > .headers-region > .tab {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-border-color: transparent;
+    -fx-border-width: 0 0 3 0;
+    -fx-padding: 8 20 8 20;
+    -fx-cursor: hand;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab:hover {
+    -fx-background-color: -verde-suave;
+}
+.tab-pane > .tab-header-area > .headers-region > .tab:selected {
+    -fx-border-color: -verde;
+}
+.tab .tab-label {
+    -fx-text-fill: -texto-suave;
+    -fx-font-weight: bold;
+    -fx-font-size: 13.5px;
+}
+.tab:selected .tab-label {
+    -fx-text-fill: -verde;
+}
+.tab:selected .focus-indicator {
+    -fx-border-color: transparent;
+}
+
+/* ---------- Textos ---------- */
 .titulo {
     -fx-font-size: 22px;
     -fx-font-weight: bold;
-    -fx-text-fill: #1B1F1C;
+    -fx-text-fill: -texto;
 }
 .subtitulo {
-    -fx-text-fill: #56605A;
-}
-.tarjeta {
-    -fx-background-color: white;
-    -fx-border-color: #D2D9D4;
-    -fx-border-radius: 8;
-    -fx-background-radius: 8;
-    -fx-padding: 16;
-}
-.numero {
-    -fx-background-color: #1E6B3A;
-    -fx-background-radius: 12;
-    -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-min-width: 24;
-    -fx-min-height: 24;
-    -fx-alignment: center;
+    -fx-text-fill: -texto-suave;
 }
 .titulo-seccion {
     -fx-font-size: 15px;
     -fx-font-weight: bold;
-    -fx-text-fill: #1E6B3A;
+    -fx-text-fill: -verde;
 }
 .etiqueta {
     -fx-font-weight: bold;
-    -fx-text-fill: #1B1F1C;
+    -fx-text-fill: -texto;
 }
 .ayuda {
     -fx-font-size: 12px;
-    -fx-text-fill: #56605A;
-}
-.vacio {
-    -fx-border-color: #AEB8B1;
-    -fx-border-style: segments(6, 4);
-    -fx-border-radius: 6;
-    -fx-background-color: #FAFBFA;
-    -fx-padding: 14;
-    -fx-text-fill: #56605A;
-    -fx-alignment: center;
-}
-.solo-lectura {
-    -fx-background-color: #F0F2F1;
-    -fx-text-fill: #3A423E;
+    -fx-text-fill: -texto-suave;
 }
 .total {
-    -fx-font-size: 20px;
+    -fx-font-size: 22px;
     -fx-font-weight: bold;
-    -fx-text-fill: #1B1F1C;
+    -fx-text-fill: -verde-oscuro;
 }
+
+/* ---------- Tarjetas y secciones ---------- */
+.tarjeta {
+    -fx-background-color: white;
+    -fx-border-color: -borde;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 18;
+    -fx-effect: dropshadow(gaussian, rgba(20, 80, 42, 0.08), 14, 0, 0, 3);
+}
+.numero {
+    -fx-background-color: linear-gradient(to bottom, #2E8B57, #1E6B3A);
+    -fx-background-radius: 13;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-min-width: 26;
+    -fx-min-height: 26;
+    -fx-alignment: center;
+}
+.vacio {
+    -fx-border-color: #B7C7BC;
+    -fx-border-style: segments(6, 4);
+    -fx-border-radius: 8;
+    -fx-background-color: -verde-suave;
+    -fx-background-radius: 8;
+    -fx-padding: 16;
+    -fx-text-fill: -texto-suave;
+    -fx-alignment: center;
+    -fx-text-alignment: center;
+}
+
+/* ---------- Campos ---------- */
+.text-field, .text-area, .combo-box, .date-picker {
+    -fx-background-color: white;
+    -fx-background-radius: 6;
+    -fx-border-color: -borde;
+    -fx-border-radius: 6;
+}
+.text-field, .text-area .content {
+    -fx-padding: 7 10 7 10;
+}
+.text-field:hover, .combo-box:hover {
+    -fx-border-color: #A9C4B2;
+}
+.text-field:focused, .text-area:focused, .combo-box:focused {
+    -fx-border-color: -verde-medio;
+    -fx-border-width: 1.5;
+    -fx-effect: dropshadow(gaussian, rgba(46, 139, 87, 0.25), 6, 0, 0, 0);
+}
+.combo-box .arrow-button {
+    -fx-background-color: transparent;
+}
+.combo-box .arrow {
+    -fx-background-color: -verde;
+}
+.combo-box-popup .list-view {
+    -fx-background-color: white;
+    -fx-border-color: -borde;
+}
+.check-box .box {
+    -fx-background-color: white;
+    -fx-border-color: #A9C4B2;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+}
+.check-box:selected .box {
+    -fx-background-color: -verde;
+    -fx-border-color: -verde;
+}
+.check-box:selected .mark {
+    -fx-background-color: white;
+}
+.solo-lectura, .solo-lectura:focused {
+    -fx-background-color: #EEF3EF;
+    -fx-text-fill: #3A423E;
+    -fx-border-color: #E1E8E3;
+    -fx-effect: null;
+}
+.buscador {
+    -fx-background-radius: 18;
+    -fx-border-radius: 18;
+    -fx-padding: 7 14 7 14;
+}
+
+/* ---------- Errores ---------- */
 .msg-error {
-    -fx-text-fill: #B42318;
+    -fx-text-fill: -rojo;
     -fx-font-size: 12px;
 }
-.campo-error {
-    -fx-border-color: #B42318;
+.campo-error, .campo-error:focused, .campo-error:hover {
+    -fx-border-color: -rojo;
     -fx-border-width: 2;
-    -fx-border-radius: 4;
+    -fx-border-radius: 6;
 }
 .banner-error {
     -fx-background-color: #FEF3F2;
     -fx-border-color: #F1B5AE;
-    -fx-border-radius: 6;
-    -fx-background-radius: 6;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
     -fx-text-fill: #8A1C12;
     -fx-font-weight: bold;
     -fx-padding: 10 14;
 }
-.estado-aprobado {
-    -fx-background-color: #E6F2EA;
-    -fx-text-fill: #1E6B3A;
-    -fx-background-radius: 10;
+
+/* ---------- Botones ---------- */
+.boton-principal {
+    -fx-background-color: linear-gradient(to bottom, #2E8B57, #1E6B3A);
+    -fx-background-radius: 8;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-padding: 10 22;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(30, 107, 58, 0.35), 8, 0, 0, 2);
+}
+.boton-principal:hover {
+    -fx-background-color: linear-gradient(to bottom, #1E6B3A, #14502A);
+}
+.boton-principal:pressed {
+    -fx-background-color: #12462A;
+}
+.boton {
+    -fx-background-color: white;
+    -fx-background-radius: 8;
+    -fx-border-color: -borde;
+    -fx-border-radius: 8;
+    -fx-text-fill: -texto;
+    -fx-padding: 8 16;
+    -fx-cursor: hand;
+}
+.boton:hover {
+    -fx-background-color: -verde-claro;
+    -fx-border-color: -verde-medio;
+    -fx-text-fill: -verde-oscuro;
+}
+.boton:pressed {
+    -fx-background-color: #D4EADB;
+}
+.boton-quitar {
+    -fx-text-fill: -rojo;
+    -fx-cursor: hand;
+}
+.boton.boton-quitar:hover {
+    -fx-background-color: #FEF3F2;
+    -fx-border-color: #F1B5AE;
+    -fx-text-fill: -rojo;
+}
+.button:disabled {
+    -fx-opacity: 0.45;
+}
+
+/* Botones del filtro por estado (pantalla Pedidos) */
+.toggle-button.filtro {
+    -fx-background-color: white;
+    -fx-background-radius: 18;
+    -fx-border-color: -borde;
+    -fx-border-radius: 18;
+    -fx-text-fill: -texto-suave;
+    -fx-font-weight: bold;
+    -fx-padding: 6 14;
+    -fx-cursor: hand;
+}
+.toggle-button.filtro:hover {
+    -fx-background-color: -verde-claro;
+    -fx-border-color: -verde-medio;
+}
+.toggle-button.filtro:selected {
+    -fx-background-color: -verde;
+    -fx-border-color: -verde;
+    -fx-text-fill: white;
+}
+
+/* ---------- Tablas y listas ---------- */
+.table-view, .list-view {
+    -fx-background-color: white;
+    -fx-background-radius: 8;
+    -fx-border-color: -borde;
+    -fx-border-radius: 8;
+    -fx-padding: 1;
+}
+.table-view .column-header-background {
+    -fx-background-color: -verde-claro;
+    -fx-background-radius: 8 8 0 0;
+}
+.table-view .column-header, .table-view .filler {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent transparent #CFE0D4 transparent;
+    -fx-size: 36;
+}
+.table-view .column-header .label {
+    -fx-text-fill: -verde-oscuro;
+    -fx-font-weight: bold;
+    -fx-alignment: center-left;
+    -fx-padding: 0 6;
+}
+.table-row-cell {
+    -fx-background-color: white;
+    -fx-table-cell-border-color: #EEF2EF;
+    -fx-cell-size: 36;
+}
+.table-row-cell:odd {
+    -fx-background-color: #FAFCFB;
+}
+.table-row-cell:hover {
+    -fx-background-color: #EEF7F1;
+}
+.table-row-cell:selected {
+    -fx-background-color: #D4EADB;
+}
+.table-row-cell:selected .table-cell {
+    -fx-text-fill: -texto;
+}
+.table-cell {
+    -fx-padding: 0 8;
+    -fx-alignment: center-left;
+}
+.list-cell:filled:hover {
+    -fx-background-color: #EEF7F1;
+}
+.list-cell:filled:selected {
+    -fx-background-color: #D4EADB;
+    -fx-text-fill: -texto;
+}
+
+/* ---------- Barras de desplazamiento ---------- */
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+}
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+.scroll-bar {
+    -fx-background-color: transparent;
+}
+.scroll-bar .thumb {
+    -fx-background-color: #B9CEC0;
+    -fx-background-radius: 6;
+    -fx-background-insets: 2;
+}
+.scroll-bar .thumb:hover {
+    -fx-background-color: -verde-medio;
+}
+.scroll-bar .increment-button, .scroll-bar .decrement-button {
+    -fx-padding: 0;
+    -fx-background-color: transparent;
+}
+.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+    -fx-padding: 0;
+}
+
+/* ---------- Estados ---------- */
+.estado-aprobado, .estado-revision, .estado-sin, .estado {
+    -fx-background-radius: 12;
     -fx-padding: 3 10;
     -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+.estado-aprobado {
+    -fx-background-color: #E6F2EA;
+    -fx-text-fill: -verde;
 }
 .estado-revision {
     -fx-background-color: #FFF1E0;
     -fx-text-fill: #8A4B00;
-    -fx-background-radius: 10;
-    -fx-padding: 3 10;
-    -fx-font-weight: bold;
 }
 .estado-sin {
     -fx-background-color: #EEF0EF;
     -fx-text-fill: #56605A;
-    -fx-background-radius: 10;
-    -fx-padding: 3 10;
+}
+.estado-sin-confirmar {
+    -fx-background-color: #EEF0EF;
+    -fx-text-fill: #56605A;
+}
+.estado-confirmado {
+    -fx-background-color: #E1F1E6;
+    -fx-text-fill: -verde;
+    -fx-border-color: #B5D9C0;
+    -fx-border-radius: 12;
+}
+.estado-en-produccion {
+    -fx-background-color: #FFF1E0;
+    -fx-text-fill: #8A4B00;
+}
+.estado-entregado {
+    -fx-background-color: -verde;
+    -fx-text-fill: white;
+}
+
+/* ---------- Pantalla Pedidos ---------- */
+.lista-pedidos {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-padding: 0;
+}
+.lista-pedidos > .virtual-flow > .clipped-container > .sheet > .list-cell,
+.lista-pedidos .list-cell,
+.lista-pedidos .list-cell:filled:hover,
+.lista-pedidos .list-cell:filled:selected {
+    -fx-background-color: transparent;
+    -fx-padding: 5 4 5 2;
+}
+.tarjeta-pedido {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-color: -borde;
+    -fx-border-radius: 12;
+    -fx-padding: 12 16 12 12;
+    -fx-effect: dropshadow(gaussian, rgba(20, 80, 42, 0.07), 10, 0, 0, 2);
+    -fx-cursor: hand;
+}
+.lista-pedidos .list-cell:hover .tarjeta-pedido {
+    -fx-border-color: #9CC5AA;
+}
+.lista-pedidos .list-cell:selected .tarjeta-pedido {
+    -fx-border-color: -verde;
+    -fx-border-width: 2;
+    -fx-background-color: #FBFDFB;
+}
+.numero-pedido {
+    -fx-background-color: -verde-claro;
+    -fx-background-radius: 6;
+    -fx-text-fill: -verde-oscuro;
+    -fx-font-weight: bold;
+    -fx-padding: 2 8;
+}
+.tarjeta-titulo {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -texto;
+}
+.tarjeta-detalle {
+    -fx-text-fill: -texto-suave;
+}
+.tarjeta-total {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -verde-oscuro;
+}
+.dato-chip {
+    -fx-background-color: -verde-suave;
+    -fx-background-radius: 6;
+    -fx-text-fill: #3A423E;
+    -fx-font-size: 12px;
+    -fx-padding: 3 8;
+}
+.fecha-vencida {
+    -fx-text-fill: -rojo;
     -fx-font-weight: bold;
 }
-.boton-principal {
-    -fx-background-color: #1E6B3A;
+.dato-chip.fecha-vencida {
+    -fx-background-color: #FEF3F2;
+}
+
+/* Detalle del pedido */
+.panel-detalle-scroll {
+    -fx-background-color: transparent;
+}
+.caja-diseno-grande {
+    -fx-cursor: hand;
+    -fx-alignment: center;
+}
+.titulo-detalle {
+    -fx-font-size: 19px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -texto;
+}
+.dato-nombre {
+    -fx-text-fill: -texto-suave;
+    -fx-min-width: 80;
+}
+.dato-valor {
+    -fx-text-fill: -texto;
+    -fx-font-weight: bold;
+}
+.dato-valor-fuerte {
+    -fx-text-fill: -verde-oscuro;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+}
+.caja-pagos {
+    -fx-background-color: -verde-suave;
+    -fx-background-radius: 8;
+    -fx-border-color: #DCEBE1;
+    -fx-border-radius: 8;
+    -fx-padding: 12;
+}
+
+/* Imagen del diseño */
+.diseno-foto {
+    -fx-background-color: #EEF3EF;
+}
+.diseno-placeholder {
+    -fx-background-color: linear-gradient(to bottom right, #2E8B57, #14502A);
+}
+.diseno-camiseta {
+    -fx-fill: rgba(255, 255, 255, 0.92);
+    -fx-stroke: rgba(0, 0, 0, 0.10);
+}
+.diseno-iniciales {
+    -fx-text-fill: -verde;
+    -fx-font-weight: bold;
+}
+.diseno-aviso {
+    -fx-background-color: rgba(0, 0, 0, 0.35);
+    -fx-background-radius: 10;
+    -fx-text-fill: white;
+    -fx-font-size: 11px;
+    -fx-padding: 3 10;
+    -fx-translate-y: -10;
+}
+.diseno-cinta {
+    -fx-background-color: #FFB547;
+    -fx-text-fill: #4A2A00;
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+    -fx-padding: 2 7;
+    -fx-background-radius: 0 0 8 0;
+}
+
+/* ---------- Diálogos ---------- */
+.dialog-pane {
+    -fx-background-color: white;
+}
+.dialog-pane > .header-panel {
+    -fx-background-color: -verde-claro;
+    -fx-border-color: transparent transparent #CFE0D4 transparent;
+}
+.dialog-pane > .header-panel .label {
+    -fx-text-fill: -verde-oscuro;
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+}
+.dialog-pane > .button-bar > .container > .button {
+    -fx-background-radius: 8;
+    -fx-padding: 7 16;
+    -fx-cursor: hand;
+}
+.dialog-pane > .button-bar > .container > .button:default {
+    -fx-background-color: linear-gradient(to bottom, #2E8B57, #1E6B3A);
     -fx-text-fill: white;
     -fx-font-weight: bold;
-    -fx-padding: 10 20;
-    -fx-cursor: hand;
-}
-.boton-principal:hover {
-    -fx-background-color: #14502A;
-}
-.boton {
-    -fx-padding: 8 16;
-    -fx-cursor: hand;
-}
-.boton-quitar {
-    -fx-text-fill: #B42318;
-    -fx-cursor: hand;
 }

@@ -1,44 +1,28 @@
 package co.edu.uniquindio.viveros.vista;
 
-import co.edu.uniquindio.viveros.controlador.ClienteControlador;
-import co.edu.uniquindio.viveros.modelo.Cliente;
-import javafx.collections.FXCollections;
-import javafx.geometry.Insets;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.VBox;
+
+import java.io.IOException;
+import java.io.UncheckedIOException;
 
 /**
  * Pantalla 2: CRUD de Cliente. Responsable: Integrante 1.
- * Por ahora solo muestra la lista, para comprobar que los datos cargan.
+ * El diseño está en resources/ClientesVista.fxml (se edita con Scene Builder)
+ * y la lógica de la pantalla en ClientesVistaController.
+ * Se deja esta clase para que App siga igual: new ClientesVista().getVista().
  */
 public class ClientesVista {
 
-    private final ClienteControlador controlador = new ClienteControlador();
-    private final VBox raiz = new VBox(10);
+    private final Parent raiz;
 
     public ClientesVista() {
-        raiz.setPadding(new Insets(20));
-
-        TableView<Cliente> tabla = new TableView<>();
-        tabla.getColumns().add(columna("ID", "idCliente"));
-        tabla.getColumns().add(columna("Nombre", "nombre"));
-        tabla.getColumns().add(columna("Teléfono", "telefono"));
-        tabla.getColumns().add(columna("Canal de contacto", "canalContacto"));
-        tabla.setItems(FXCollections.observableArrayList(controlador.listar()));
-        tabla.setPlaceholder(new Label("No hay clientes registrados"));
-
-        // TODO Integrante 1: buscador, paginación, formulario crear/editar y botón eliminar
-        raiz.getChildren().addAll(new Label("Clientes"), tabla);
-    }
-
-    private TableColumn<Cliente, Object> columna(String titulo, String atributo) {
-        TableColumn<Cliente, Object> col = new TableColumn<>(titulo);
-        col.setCellValueFactory(new PropertyValueFactory<>(atributo));
-        return col;
+        try {
+            FXMLLoader loader = new FXMLLoader(ClientesVista.class.getResource("/ClientesVista.fxml"));
+            raiz = loader.load();
+        } catch (IOException e) {
+            throw new UncheckedIOException("No se pudo cargar ClientesVista.fxml", e);
+        }
     }
 
     public Parent getVista() {
